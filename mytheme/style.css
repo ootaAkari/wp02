@@ -16,6 +16,10 @@ Version: 1.0
     --f6: .8em;
 
     --basecolor: #63a211;
+
+    --myfont: 'Josefin Sans', sans-serif;
+
+    --myw: 720px; /*標準値*/
 }
 
 body {
@@ -32,6 +36,7 @@ h2 {
     padding-left: 14px;
     border-left: solid 14px var(--basecolor);
     font-size: var(--f2);
+    white-space: nowrap;
 }
 h3 {
     font-size: var(--f3);
@@ -50,6 +55,15 @@ p {
     font-size: var(--f5);
     line-height: 1.8;
 }
+/* リンク */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: .7;
+}
 
 
 figure {
@@ -58,18 +72,236 @@ figure {
 
 img {
     object-fit: cover;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ヘッダー */
+.myhead > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    color: #444;
+}
+.myhead a {
+    font-family: var(--myfont);
+    font-size: var(--f3);
+}
+.myhead p {
+    font-size: var(--f6);
 }
 
 /*mycontainer*/
 .mycontainer {
     margin: 0 10px;
-}
 
+}
 @media (min-width: 740px) {
     .mycontainer {
-        max-width: 720px;
+        max-width: var(--myw);
         margin: 0 auto;
     }
+}
+
+/*myposthead*/
+.myposthead {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.myposthead p {
+    color: var(--basecolor);
+    font-family: var(--myfont);
+    font-weight: 700;
+}
+
+/* 記事が属するカテゴリー */
+.post-categories {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    list-style-type: none;
+}
+.post-categories li:not(:last-child) {
+    margin-right: 10px;
+}
+.post-categories a {
+    padding: 3px 10px;
+    border: solid 1px currentColor;
+    border-radius: 10px;
+    color: var(--basecolor);
+    font-size: ver(--f6);
+}
+/* カテゴリにアイコン表示 */
+.post-categories::before {
+    content: "\f318";
+    font-family: "dashicons";
+    color: var(--basecolor);
+    font-size: var(--f2);
+    line-height: 1;
+    margin-right: 5px;
+}
+
+/* 記事2列並び */
+.mypostlist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.mypostlist article{
+    width: 48%;
+    margin-bottom: 20px;
+}
+.mypostlist figure {
+    /* margin: 0; */
+}
+.mypostlist img {
+    height: 180px;
+    object-fit: cover;
+}
+
+/* 前後の記事へのリンク */
+.nav-links {
+    display: flex;
+    margin: 30px 0;
+    font-size: var(--f6);
+}
+.nav-previous {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.nav-previous::before {
+    content: "\f141";
+}
+.nav-next {
+    flex: 1;
+    margin-left: 10px;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.nav-next::after {
+    content: "\f139";
+}
+.nav-previous::before, .nav-next::after {
+    font-family: "dashicons";
+    color: var(--basecolor);
+    font-size: var(--f2);
+    line-height: 1;
+}
+
+/*ページネーション*/
+.pagination .nav-links {
+    margin-bottom: 50px;
+    justify-content: center;
+}
+.pagination .page-numbers:not(:last-child) {
+    margin-right: 15px;
+}
+.pagination a {
+    color: var(--basecolor);
+}
+.pagination .current {
+    color: #aaa;
+}
+
+/*sidebar.php メニュー*/
+.mymenu {
+    margin-top: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #fbf6e8;
+}
+.mymenu h2 {
+    padding: 10px;
+    border: none;
+    background-color: var(--basecolor);
+    color: #fff;
+    font-family: var(--myfont);
+    font-size: var(--f5);
+}
+/*プロフィール*/
+.myprofile figure {
+    text-align: center;
+}
+.myprofile img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+.myprofile strong{
+    display: block;
+    text-align: center;
+    font-family: var(--myfont);
+}
+.myprofile p{
+    font-size: var(--f6);
+}
+/*ウィジェット*/
+.widget ul {
+    padding: 0;
+    list-style-type: none;
+    font-size: var(--f6);
+}
+.widget li:not(:last-child) {
+    margin-bottom: 5px;
+}
+.widget select {
+    width: 100%;
+    height: 40px;
+    border: solid 1px #aaa;
+}
+@media (min-width: 740px) {
+    .mymenu-columns {
+        columns: 3;
+        column-gap: 30px;
+    }
+    .mymenu-columns > section {
+        position: relative;
+        overflow: hidden;
+        break-inside: avoid;
+    }
+}
+/*上下余白*/
+.mymargin {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+/*フォーム*/
+.wpcf7-text,
+.wpcf7-textarea {
+    width: 100%;
+    padding: 10px;
+    border: solid 1px #bbb;
+}
+.wpcf7-submit {
+    width: 250px;
+    padding: 10px;
+    border: none;
+    background-color: #ffaa00;
+    --webkit-appearance: none;
+}
+
+/*ナビゲーション*/
+.mynav {
+    padding: 7px 0;
+    background-image: linear-gradient(79.7deg, rgba(34, 126, 34, 1) 8.2%, 
+    rgba(99, 162, 17, 1) 84.9%);
+    color: #fff;
+    font-size: var(--f6);
+}
+
+.mynav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.mynav li:not(:last-child) {
+    margin-right: 1em;
 }
 
 .alignleft {
@@ -85,6 +317,35 @@ img {
 .aligncenter {
     margin: 0 auto;
 }
+.alignfull {
+    margin-left: -10px;
+    margin-right: -10px;
+    max-width: none;
+    width: auto;
+
+}
+
+@media (min-width: 740px) {
+
+    .alignfull {
+        margin-left: calc( (100vw - 720px) / 2 * -1);
+        margin-right: calc( (100vw - 720px) / 2 * -1);
+    }
+
+    .alignwide {
+        margin-left: calc( (100vw - 720px) / 4 * -1);
+        margin-right: calc( (100vw - 720px) / 4 * -1);
+        max-width: none;
+        width: auto;
+    }
+}
+
+@media (min-width: 1320px) {
+    .alignwide {
+        margin-left: -150px;
+        margin-right: -150px;
+    }
+}
 
 .wp-block-categories.aligncenter,
 .wp-block-latest-posts.aligncenter,
@@ -94,4 +355,16 @@ img {
 .wp-block-rss.aligncenter {
     text-align: center;
 }
+
+/* フッター */
+.myfoot {
+    padding: 16px;
+    background-color: var(--basecolor);
+    background-image: linear-gradient(79.7deg, rgba(34, 126, 34, 1) 8.2%, 
+    rgba(99, 162, 17, 1) 84.9%);
+    font-family: var(--myfont);
+    color: #fff;
+    text-align: center;
+}
+
 
